@@ -78,13 +78,13 @@ code {
 
 @media all and (max-width: 959px) {
   body {
-    font-size: 125%;
+    font-size: 100%;
   }
 }
 
 @media all and (min-width: 960px) {
   body {
-    font-size: 200%;
+    font-size: 175%;
   }
 
   .slide .content {
@@ -133,7 +133,7 @@ code {
 .slide p code {
   padding: 2px 4px;
 
-  font-size: 90%;
+  font-size: 80%;
 
   color: #c7254e;
   background-color: #f9f2f4;
