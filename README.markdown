@@ -3,7 +3,6 @@
 
 ### &copy; 2016 Robert Monnet
 
-
 ![license](https://i.creativecommons.org/l/by/4.0/88x31.png)
 licensed under [Creative Commons Attribution 4.0 Int. License](http://creativecommons.org/licenses/by/4.0/)
 
@@ -427,7 +426,12 @@ pool.invoke(qs);
     - [Java Fork and Join using ForkJoinPool](http://tutorials.jenkov.com/java-util-concurrent/java-fork-and-join-forkjoinpool.html)
     - [Doug Lea's Workstation](http://g.oswego.edu)
 
-
 ***
 
+# Attributions
+
+- Duke's image is from Kenai ["Duke open collection"](https://kenai.com/projects/duke/pages/Home)
+- The slide presentation framework is [slidedown](https://github.com/slidedown/slidedown) on GitHub
+
+***
 
