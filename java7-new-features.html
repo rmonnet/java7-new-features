@@ -1,16 +1,42 @@
-![Java](https://duke.kenai.com/misc/Bullfight.jpg)
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>java7-new-features</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+
 # What's new in Java 7?
 
-### &copy; 2016 Robert Monnet
+### ![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Duke_%28Java_mascot%29_waving.svg/133px-Duke_%28Java_mascot%29_waving.svg.png)
 
-![license](https://i.creativecommons.org/l/by/4.0/88x31.png)
-licensed under [Creative Commons Attribution 4.0 Int. License](http://creativecommons.org/licenses/by/4.0/)
+&copy; 2016 Robert Monnet
 
-***
+###### licensed under the [Creative Commons Attribution 4.0 Int. License](http://creativecommons.org/licenses/by/4.0/)
+###### ![license](https://i.creativecommons.org/l/by/4.0/80x15.png)
+
+---
 
 # Improvements in Java 7
 
-Syntax Improvements helps write cleaner code.
+Syntax Improvements that help write cleaner code.
 
 - Diamond <> operator
 - `try` with resources
@@ -24,7 +50,7 @@ Java library new features for concurrency and IO.
 - `fork/join` framework
 
 
-***
+---
 
 # Diamond Operator <>
 
@@ -39,7 +65,7 @@ public TreeMap<String, LinkedList<String>> map =
         new TreeMap<String, LinkedList<String>>();
 ```
 
-- With Java 7
+- Java 7
 
 ```java
 // new can use the <> operator for shorter declaration.
@@ -48,7 +74,7 @@ public TreeMap<String, LinkedList<String>> map =
         new TreeMap<>();
 ```
 
-***
+---
 
 # try-with-resources
 
@@ -75,7 +101,7 @@ try {
 }
 ```
 
-***
+---
 
 # try-with-resources
 
@@ -97,18 +123,18 @@ try (BufferedReader in =
 // resources are automatically released when try block is exited.
 ```
 
-***
+---
 
 # try-with-resources
 
 - Exceptions raised when releasing resources are suppressed
-    - Typically what you want since released exceptions are ignored
+    - Typically what you want since released exceptions are ignored.
 
-- If Exception is allowed to escape the try-with-resource block, it will suppress any exception thrown during the auto-release.
+- If an Exception is allowed to escape the try-with-resource block, it will suppress any exception thrown during the auto-release.
     - Rationale: the exception thrown in the block is more important
     - The suppressed exception can be retrieved via `ex.getSuppressed()`
 
-***
+---
 
 # try-with-resources
 
@@ -136,13 +162,13 @@ try (BufferedReader
 }
 ```
 
-***
+---
 
 # try-with-resources
 
-- Resource must implements `AutoCloseable` (compile error otherwise)
+- Resources must implements `AutoCloseable` (compile error otherwise).
     - Java library resource classes implement `AutoCloseable`
-    - Class you want to use with try-with-resource block should implement it.
+    - Implement `AutoCloseable` in your Class to benefit from the try-with-resource idiom
 
 ```java
 public interface AutoCloseable {
@@ -150,7 +176,7 @@ public interface AutoCloseable {
 }
 ```
 
-***
+---
 
 # catching multiple exceptions
 
@@ -171,7 +197,7 @@ try (BufferedReader in =
 }
 ```
 
-***
+---
 
 # catching multiple exceptions
 
@@ -190,11 +216,11 @@ try (BufferedReader in =
 }
 ```
 
-***
+---
 
 # String arguments in switch
 
-- Before Java7, only integer and enum arguments allowed in switch statements.
+- Before Java7, only integer and enum arguments were allowed in switch statements.
 
 ```java
 for (String arg : args) {
@@ -210,7 +236,7 @@ for (String arg : args) {
 }
 ```
 
-***
+---
 
 # String arguments in switch
 
@@ -233,13 +259,13 @@ for (String arg : args) {
     }
 ```
 
-***
+---
 
 # LinkedTransferQueue
 
 `LinkedTransferQueue` is a thread safe queue useful to communicate between threads.
 
-- To be thread safe, messages passed between the threads should be either:
+- Important: to be thread safe, messages passed between the threads should be either:
     - read only
     - deep copy
     - such that sender doesn't keep handles on object 
@@ -251,7 +277,7 @@ Producer prod = new Producer(queue, 10);
 Consumer cons = new Consumer(queue);
 ```
 
-***
+---
 
 # LinkedTransferQueue
 
@@ -270,7 +296,7 @@ public void run() {
 }
 ```
 
-***
+---
 
 # LinkedTransferQueue
 
@@ -293,7 +319,7 @@ public void run() {
 }                                                         
 ```
 
-***
+---
 
 # LinkedTransferQueue
 
@@ -320,7 +346,7 @@ public void run() {
 }
 ```
 
-***
+---
 
 # Fork/Join Framework
 
@@ -331,7 +357,7 @@ public void run() {
     - Support tasks returning results with `RecursiveTask<E>`
     - Support resultless tasks with `RecursiveAction` 
 
-***
+---
 
 # Fork/Join Framework
 
@@ -356,7 +382,7 @@ public Double compute() {
 
 ```
 
-***
+---
 
 # Fork/Join Framework
 
@@ -384,11 +410,11 @@ public void compute() {
     }
 ```
 
-***
+---
 
 # Fork/Join Framework
 
-Fork/Join uses a special `ExecutorService` : `ForkJoinPool`
+Fork/Join uses a special `ExecutorService` : `ForkJoinPool`.
 
 ```java
 // use a single ForkJoinPool per VM
@@ -398,21 +424,21 @@ ParQuicksort qs = new ParQuicksort(values, 0, values.length - 1);
 pool.invoke(qs);
 ```
 
-***
+---
 
 # java.nio.file
 
 - `java.nio.file`
     - `Files`
-        - This class consists exclusively of static methods that operate on files, directories, or other types of files.
+        - Provides a set of static methods that operate on files, directories, or other types of files
     - `Paths`
-        - This class consists exclusively of static methods that return a Path by converting a path string or URI.
+        - Provides a set of static methods that return a Path by converting a path string or URI
     - `FileSystem`
-        - Provides an interface to a file system and is the factory for objects to access files and other objects in the file system.
+        - Provides an interface to the file system and a factory for objects accessing files and other filesystem objects
     - `FileSystems`
-        - Factory methods for file systems. This class defines the getDefault method to get the default file system and factory methods to construct other types of file systems.
+        - Provides factory methods for file systems. This class defines the `getDefault()` method to access the default file system and factory methods to construct other types of file systems.
 
-***
+---
 
 # References
 
@@ -426,12 +452,20 @@ pool.invoke(qs);
     - [Java Fork and Join using ForkJoinPool](http://tutorials.jenkov.com/java-util-concurrent/java-fork-and-join-forkjoinpool.html)
     - [Doug Lea's Workstation](http://g.oswego.edu)
 
-***
+---
 
 # Attributions
 
-- Duke's image is from Kenai ["Duke open collection"](https://kenai.com/projects/duke/pages/Home)
-- The slide presentation framework is [slidedown](https://github.com/slidedown/slidedown) on GitHub
+- Duke's image is from Wikimedia ["Duke: Java Mascot"](https://commons.wikimedia.org/wiki/File:Duke_java_maskot.png).
+- This presentation is using the excellent [remark](https://remarkjs.com) framework.
 
-***
 
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
