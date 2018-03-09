@@ -421,7 +421,7 @@ pool.invoke(qs);
 - Java 7 new features
     - [O'Reilly, a look at Java7 new features](http://radar.oreilly.com/2011/09/java7-features.html)
     - [Oracle, Java SE Features and Enhancements](http://www.oracle.com/technetwork/java/javase/jdk7-relnotes-418459.html)
-    - [10 JDK 7 Features to revisit before yo welcome Java8](http://javarevisited.blogspot.com/2014/04/10-jdk-7-features-to-revisit-before-you.html)
+    - [10 JDK 7 Features to revisit before you welcome Java8](http://javarevisited.blogspot.com/2014/04/10-jdk-7-features-to-revisit-before-you.html)
 - Concurrency
     - [When to use ForkJoinPool vs. ExecutorService](http://www.javaworld.com/article/2078440/enterprise-java/java-tip-when-to-use-forkjoinpool-vs-executorservice.html)
     - [A java Fork/Join Calamity](http://coopsoft.com/ar/CalamityArticle.html)
