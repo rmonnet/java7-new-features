@@ -1,7 +1,7 @@
 
 # What's new in Java 7?
 
-### ![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Duke_%28Java_mascot%29_waving.svg/133px-Duke_%28Java_mascot%29_waving.svg.png)
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Duke_%28Java_mascot%29_waving.svg/133px-Duke_%28Java_mascot%29_waving.svg.png" width="100">
 
 &copy; 2016 Robert Monnet
 
@@ -10,7 +10,7 @@
 
 ---
 
-# Improvements in Java 7
+## Improvements in Java 7
 
 Syntax Improvements that help write cleaner code.
 
@@ -28,11 +28,11 @@ Java library new features for concurrency and IO.
 
 ---
 
-# Diamond Operator <>
+## Diamond Operator <>
 
-Use <> to avoid type repetition when constructing objects.
+- Use <> to avoid type repetition when constructing objects.
 
-- Before Java 7
+##### Before Java 7
 
 ```java
 // new needs to fully specify the Generic Parameters.
@@ -41,7 +41,7 @@ public TreeMap<String, LinkedList<String>> map =
         new TreeMap<String, LinkedList<String>>();
 ```
 
-- Java 7
+##### Java 7
 
 ```java
 // new can use the <> operator for shorter declaration.
@@ -52,9 +52,9 @@ public TreeMap<String, LinkedList<String>> map =
 
 ---
 
-# try-with-resources
+## try-with-resources
 
-- Before Java 7, use `finally` block to insure resources are released.
+##### Before Java 7, use `finally` block to insure resources are released.
 
 ```java
 BufferedReader in = null; // declare resource before try block
@@ -79,9 +79,9 @@ try {
 
 ---
 
-# try-with-resources
+## try-with-resources
 
-- With Java 7, resource defined with `try()` are automatically released.
+##### With Java 7, resource defined with `try()` are automatically released.
 
 ```java
 // declare resources with try(...)
@@ -101,7 +101,7 @@ try (BufferedReader in =
 
 ---
 
-# try-with-resources
+## try-with-resources
 
 - Exceptions raised when releasing resources are suppressed
     - Typically what you want since released exceptions are ignored.
@@ -112,9 +112,9 @@ try (BufferedReader in =
 
 ---
 
-# try-with-resources
+## try-with-resources
 
-- `IOException` thrown in the `try` block masks any released exception.
+##### `IOException` thrown in the `try` block masks any released exception.
 
 ```java
 // block auto-releases Reader but let IOException bubble up.
@@ -127,7 +127,7 @@ try (BufferedReader
 }
 ```
 
-- Suppressed exception can be examined in the caller.
+##### Suppressed exception can be examined in the caller.
 
 ```java
 } catch (IOException ex) {
@@ -140,11 +140,11 @@ try (BufferedReader
 
 ---
 
-# try-with-resources
+## try-with-resources
 
 - Resources must implements `AutoCloseable` (compile error otherwise).
-    - Java library resource classes implement `AutoCloseable`
-    - Implement `AutoCloseable` in your Class to benefit from the try-with-resource idiom
+- Java library resource classes implement `AutoCloseable`
+- Implement `AutoCloseable` in your Class to benefit from the try-with-resource idiom
 
 ```java
 public interface AutoCloseable {
@@ -154,9 +154,9 @@ public interface AutoCloseable {
 
 ---
 
-# catching multiple exceptions
+## catching multiple exceptions
 
-- Before Java 7, different exception types have separate catch blocks.
+##### Before Java 7, different exception types have separate catch blocks.
 
 ```java
 try (BufferedReader in =
@@ -175,9 +175,9 @@ try (BufferedReader in =
 
 ---
 
-# catching multiple exceptions
+## catching multiple exceptions
 
-- With Java 7, exceptions can be caught within one catch block.
+##### With Java 7, exceptions can be caught within one catch block.
 
 ```java
 try (BufferedReader in =
@@ -194,9 +194,9 @@ try (BufferedReader in =
 
 ---
 
-# String arguments in switch
+## String arguments in switch
 
-- Before Java7, only integer and enum arguments were allowed in switch statements.
+##### Before Java7, only integer and enum arguments were allowed in switch statements.
 
 ```java
 for (String arg : args) {
@@ -214,9 +214,9 @@ for (String arg : args) {
 
 ---
 
-# String arguments in switch
+## String arguments in switch
 
-- With Java 7, strings can also be used.
+##### With Java 7, strings can also be used.
 
 ```java
 for (String arg : args) {
@@ -237,10 +237,9 @@ for (String arg : args) {
 
 ---
 
-# LinkedTransferQueue
+## LinkedTransferQueue
 
-`LinkedTransferQueue` is a thread safe queue useful to communicate between threads.
-
+- Class [`LinkedTransferQueue`] [1] is a thread safe queue useful to communicate between threads.
 - Important: to be thread safe, messages passed between the threads should be either:
     - read only
     - deep copy
@@ -252,12 +251,12 @@ LinkedTransferQueue<Message> queue = new LinkedTransferQueue<>();
 Producer prod = new Producer(queue, 10);
 Consumer cons = new Consumer(queue);
 ```
-
+[1]: https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/LinkedTransferQueue.html
 ---
 
-# LinkedTransferQueue
+## LinkedTransferQueue
 
-- Producer uses `put()` for a FIFO queue.
+##### Producer uses `put()` for a FIFO queue.
 ```java
 // producer adds messages to the LinkedTransferQueue
 public void run() {
@@ -274,10 +273,10 @@ public void run() {
 
 ---
 
-# LinkedTransferQueue
+## LinkedTransferQueue
 
 
-- Consumer can use `take()` to read (blocking) from the FIFO queue.
+##### Consumer can use `take()` to read (blocking) from the FIFO queue.
 ```java
 // consumer reads messages from the LinkedTransferQueue                           
 public void run() {                                       
@@ -297,9 +296,9 @@ public void run() {
 
 ---
 
-# LinkedTransferQueue
+## LinkedTransferQueue
 
-- Consumer can use `poll()` to read (non-blocking) from FIFO queues.
+##### Consumer can use `poll()` to read (non-blocking) from FIFO queues.
 ```java
 // consumer reads messages from multiple LinkedTransferQueue
 // using the polling interface.
@@ -324,18 +323,25 @@ public void run() {
 
 ---
 
-# Fork/Join Framework
+## Fork/Join Framework
 
 - New concurrency framework to take advantage of multiple cores/CPUs
 - Designed for Divide-and-Conquer (recursive) problems
+    - Use Class [`ForkJoinTask`] [2] instances
     - Split a task with `fork()`
     - Wait for a forked task to complete with `join()`
-    - Support tasks returning results with `RecursiveTask<E>`
-    - Support resultless tasks with `RecursiveAction` 
+    - Support tasks returning results with [`RecursiveTask<E>`] [3]
+    - Support resultless tasks with [`RecursiveAction`] [4] 
 
 ---
 
-# Fork/Join Framework
+[2]: https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ForkJoinTask.html
+[3]: https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/RecursiveTask.html
+[4]: https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/RecursiveAction.html
+
+## Fork/Join Framework
+
+##### Example using Fork/Join with Tasks returning a result
 
 ```java
 public class ParMaximum extends RecursiveTask<Double> {
@@ -360,8 +366,9 @@ public Double compute() {
 
 ---
 
-# Fork/Join Framework
+## Fork/Join Framework
 
+##### Example using Fork/Join with result-less Tasks
 ```java
 public class ParQuicksort extends RecursiveAction {
 ...
@@ -388,9 +395,9 @@ public void compute() {
 
 ---
 
-# Fork/Join Framework
+## Fork/Join Framework
 
-Fork/Join uses a special `ExecutorService` : `ForkJoinPool`.
+- Fork/Join uses a special [`ExecutorService`] [5] : [`ForkJoinPool`] [6]
 
 ```java
 // use a single ForkJoinPool per VM
@@ -399,21 +406,27 @@ static final ForkJoinPool pool = new ForkJoinPool();
 ParQuicksort qs = new ParQuicksort(values, 0, values.length - 1);
 pool.invoke(qs);
 ```
+[5]: https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html
+[6]: https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ForkJoinPool.html
 
 ---
 
-# java.nio.file
+## java.nio.file
 
-- `java.nio.file`
-    - `Files`
-        - Provides a set of static methods that operate on files, directories, or other types of files
-    - `Paths`
-        - Provides a set of static methods that return a Path by converting a path string or URI
-    - `FileSystem`
-        - Provides an interface to the file system and a factory for objects accessing files and other filesystem objects
-    - `FileSystems`
-        - Provides factory methods for file systems. This class defines the `getDefault()` method to access the default file system and factory methods to construct other types of file systems.
+- Package [`java.nio.file`] [7]
 
+Class                | Usage
+-----                | -----
+[`Files`] [8]        | Provides a set of static methods that operate on files, directories, or other types of files
+[`Paths`] [9]        | Provides a set of static methods that return a Path by converting a path string or URI
+[`FileSystem`] [10]  | Provides an interface to the file system and a factory for objects accessing files and other filesystem objects
+[`FileSystems`] [11] | Provides factory methods for file systems. This class defines the `getDefault()` method to access the default file system and factory methods to construct other types of file systems.
+
+[7]: https://docs.oracle.com/javase/7/docs/api/java/nio/file/package-summary.html
+[8]: https://docs.oracle.com/javase/7/docs/api/java/nio/file/Files.html
+[9]: https://docs.oracle.com/javase/7/docs/api/java/nio/file/Paths.html
+[10]: https://docs.oracle.com/javase/7/docs/api/java/nio/file/FileSystem.html
+[11]: https://docs.oracle.com/javase/7/docs/api/java/nio/file/FileSystems.html
 ---
 
 # References

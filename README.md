@@ -16,7 +16,7 @@ Slides content is in `java7-new-features.md`.
 
 The perl script `remark.pl` will convert the markdown file to an html file using [remarkjs](https://remarkjs.com) as the presentation engine. The result is a single `java7-new-feature.html` file. That is all you need to present (as long as you have an internet connection).
 
-The easiest way to convert to PDF is to print the slides from Google Chrome. If the slides look like they are not centered in the PDF, zoom to 200% before printing (ctrl-+ on windows, command-+ on mac).
+If you want to generate PDF from the remark slides, my recommendation is to use [decktape](https://github.com/astefanutti/decktape). You will need to have `node.js` and a `C++` compiler installed to use it. The PDF included in the repository was generated this way.
 
 ## Need something more sophisticated
 
