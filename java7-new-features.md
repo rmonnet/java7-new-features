@@ -64,6 +64,8 @@ try {
                                       line = in.readLine()) {
         process(line);
     }
+    in.close();
+    in = null;
 } catch (IOException ex) {
     System.err.println("error: " + ex.getMessage());
 } finally {
@@ -121,7 +123,7 @@ try (BufferedReader in =
 try (BufferedReader
     in = new BufferedReader(new FileReader(filename))) {
     for (String line = in.readLine(); line != null;
-                                      line = in.readLine();
+                                      line = in.readLine()) {
         process(line);
     }
 }
